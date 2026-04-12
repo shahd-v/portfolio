@@ -389,14 +389,12 @@
     align-items: start;
     gap: 3rem;
     transition: background 0.2s;
-    text-decoration: none;
     color: inherit;
-    cursor: none;
   }
 
   .project-item:hover { background: var(--bg3); }
 
-  .project-item:hover .project-arrow { transform: translate(4px, -4px); }
+  .project-item:hover .project-meta { border-color: rgba(200,240,96,0.25); color: var(--accent); }
 
   .project-num {
     font-family: var(--mono);
@@ -432,8 +430,9 @@
   .project-actions {
     display: flex;
     align-items: center;
-    gap: 0.9rem;
+    gap: 0.75rem;
     margin-top: 1.2rem;
+    flex-wrap: wrap;
   }
 
   .project-demo {
@@ -448,13 +447,58 @@
     background: var(--accent);
     border: 1px solid var(--accent);
     padding: 0.55rem 0.8rem;
-    transition: background 0.2s, transform 0.2s, border-color 0.2s;
+    transition: background 0.2s, transform 0.2s, border-color 0.2s, color 0.2s;
+    text-decoration: none;
   }
 
   .project-demo:hover {
     background: var(--accent2);
     border-color: var(--accent2);
     transform: translateY(-1px);
+  }
+
+  .project-demo.ghost {
+    background: transparent;
+    color: var(--muted);
+    border-color: var(--line);
+  }
+
+  .project-demo.ghost:hover {
+    background: rgba(255,255,255,0.03);
+    border-color: rgba(200,240,96,0.25);
+    color: var(--text);
+  }
+
+  .project-demo.disabled {
+    background: rgba(255,255,255,0.02);
+    border-color: var(--line);
+    color: var(--muted);
+    cursor: default;
+  }
+
+  .project-meta {
+    min-width: 122px;
+    padding: 0.8rem 0.9rem;
+    border: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .project-meta-label {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .project-meta-value {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    line-height: 1;
+    color: var(--text);
   }
 
   .stack-badge {
@@ -560,19 +604,52 @@
 
   .contact-link-label { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; }
 
+  .contact-kicker {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .contact-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 1.5rem;
+  }
+
+  .contact-pill {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    padding: 0.45rem 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
   /* Chatbot */
+  .demo-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) auto;
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: 1.5rem;
+  }
+
   .chatbot-shell {
-    margin-top: 2rem;
     border: 1px solid var(--line);
     background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    min-height: 760px;
+    min-height: 560px;
     overflow: hidden;
   }
 
   .chatbot-frame {
     display: block;
     width: 100%;
-    height: 760px;
+    height: 560px;
     border: 0;
     background: #0f1115;
   }
@@ -630,10 +707,12 @@
     .skills-grid { grid-template-columns: 1fr; }
     .project-item { grid-template-columns: 1fr; gap: 1rem; padding: 2rem 1.5rem; }
     .project-num { display: none; }
+    .project-meta { min-width: 0; max-width: 180px; }
     .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
     .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
-    .chatbot-shell { min-height: 640px; }
-    .chatbot-frame { height: 640px; }
+    .demo-intro { grid-template-columns: 1fr; }
+    .chatbot-shell { min-height: 520px; }
+    .chatbot-frame { height: 520px; }
     .hero-bottom { flex-direction: column; align-items: flex-start; gap: 2rem; }
     .scroll-hint { display: none; }
     footer { flex-direction: column; gap: 0.5rem; padding: 2rem 1.5rem; }
@@ -651,8 +730,8 @@
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#chatbot">Chatbot</a></li>
     <li><a href="#experience">Experience</a></li>
+    <li><a href="#demo">Demo</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-status">
@@ -806,7 +885,7 @@
   </div>
   <div class="projects-list reveal">
 
-    <a href="#chatbot" class="project-item">
+    <div class="project-item">
       <div class="project-num">01</div>
       <div class="project-body">
         <div class="project-title">Document Q&A Chatbot</div>
@@ -817,11 +896,18 @@
           <span class="stack-badge">OpenAI</span>
           <span class="stack-badge">Streamlit</span>
         </div>
+        <div class="project-actions">
+          <a href="#demo" class="project-demo ghost">View Featured Demo <span>↘</span></a>
+          <a href="https://rag-chatbot-sfs.streamlit.app/" target="_blank" rel="noreferrer" class="project-demo">Open Live App <span>↗</span></a>
+        </div>
       </div>
-      <div class="project-arrow">-&gt;</div>
-    </a>
+      <div class="project-meta">
+        <span class="project-meta-label">Status</span>
+        <span class="project-meta-value">Live</span>
+      </div>
+    </div>
 
-    <a href="#" class="project-item">
+    <div class="project-item">
       <div class="project-num">02</div>
       <div class="project-body">
         <div class="project-title">Arabic Sentiment Analyzer</div>
@@ -832,11 +918,17 @@
           <span class="stack-badge">Plotly</span>
           <span class="stack-badge">FastAPI</span>
         </div>
+        <div class="project-actions">
+          <span class="project-demo disabled">Private Case Study</span>
+        </div>
       </div>
-      <div class="project-arrow">-&gt;</div>
-    </a>
+      <div class="project-meta">
+        <span class="project-meta-label">Status</span>
+        <span class="project-meta-value">Built</span>
+      </div>
+    </div>
 
-    <a href="https://resume-analyzer-sfs.streamlit.app/" target="_blank" rel="noreferrer" class="project-item">
+    <div class="project-item">
       <div class="project-num">03</div>
       <div class="project-body">
         <div class="project-title">AI Resume Analyzer</div>
@@ -848,37 +940,15 @@
           <span class="stack-badge">Python</span>
         </div>
         <div class="project-actions">
-          <span class="project-demo">Live Demo <span>↗</span></span>
+          <a href="https://resume-analyzer-sfs.streamlit.app/" target="_blank" rel="noreferrer" class="project-demo">Open Live Demo <span>↗</span></a>
         </div>
       </div>
-      <div class="project-arrow">-&gt;</div>
-    </a>
-
-  </div>
-</section>
-
-<section id="chatbot">
-  <div class="section-header reveal">
-    <span class="section-num">05</span>
-    <h2 class="section-title">RAG Chatbot</h2>
-  </div>
-  <div class="reveal">
-    <p style="max-width:700px;color:var(--muted);font-size:0.95rem;line-height:1.8">
-      Try the live document Q&amp;A assistant directly from this page. If the embed is blocked by the browser or Streamlit, use the external link below.
-    </p>
-    <div class="chatbot-shell">
-      <iframe
-        class="chatbot-frame"
-        src="https://rag-chatbot-sfs.streamlit.app/?embedded=true"
-        title="Document Q&A Chatbot"
-        loading="lazy"
-        referrerpolicy="strict-origin-when-cross-origin">
-      </iframe>
+      <div class="project-meta">
+        <span class="project-meta-label">Status</span>
+        <span class="project-meta-value">Live</span>
+      </div>
     </div>
-    <p class="chatbot-note">
-      If the chatbot does not load inside the frame on Vercel, it usually means the external app blocks embedding. In that case, open it in a new tab:
-      <a href="https://rag-chatbot-sfs.streamlit.app/" target="_blank" style="color:var(--accent);text-decoration:none;">Launch the chatbot -&gt;</a>
-    </p>
+
   </div>
 </section>
 
@@ -928,16 +998,49 @@
   </div>
 </section>
 
+<section id="demo">
+  <div class="section-header reveal">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Featured Demo</h2>
+  </div>
+  <div class="reveal">
+    <div class="demo-intro">
+      <p style="max-width:700px;color:var(--muted);font-size:0.95rem;line-height:1.8">
+        A live preview of my document Q&amp;A chatbot. It lets users upload a PDF, search its contents semantically, and ask grounded questions in a simple Streamlit interface.
+      </p>
+      <a href="https://rag-chatbot-sfs.streamlit.app/" target="_blank" rel="noreferrer" class="project-demo">Launch Full Demo <span>↗</span></a>
+    </div>
+    <div class="chatbot-shell">
+      <iframe
+        class="chatbot-frame"
+        src="https://rag-chatbot-sfs.streamlit.app/?embedded=true"
+        title="Document Q&A Chatbot"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin">
+      </iframe>
+    </div>
+    <p class="chatbot-note">
+      If the embed is blocked by the browser or Streamlit, open the chatbot in a new tab using the launch button above.
+    </p>
+  </div>
+</section>
+
 <section id="contact">
   <div class="contact-inner">
     <div class="reveal">
       <div class="section-header" style="margin-bottom:1.5rem">
         <span class="section-num">06</span>
       </div>
-      <h2 class="contact-heading">Let's<br><em>work</em><br>together.</h2>
+      <div class="contact-kicker">Available for select opportunities</div>
+      <h2 class="contact-heading">Let's<br><em>build</em><br>something useful.</h2>
       <p style="margin-top:1.5rem;font-size:0.9rem;color:var(--muted);max-width:320px;line-height:1.8">
         Open to AI engineering, machine learning, software development, and innovation-focused opportunities across Saudi Arabia and the wider MENA region.
       </p>
+      <div class="contact-pills">
+        <span class="contact-pill">AI Engineering</span>
+        <span class="contact-pill">ML Prototyping</span>
+        <span class="contact-pill">Freelance Projects</span>
+      </div>
     </div>
     <div class="reveal">
       <div class="contact-links">
@@ -976,7 +1079,7 @@
 
 <footer>
   <div class="footer-copy">© 2026 Shahd F Alshahrani. All rights reserved.</div>
-  <div class="footer-made">Built with <span>care</span> - deployed on Vercel</div>
+  <div class="footer-made">Designed for <span>clarity</span> and deployed on Vercel</div>
 </footer>
 
 <script>
