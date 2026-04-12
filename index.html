@@ -429,6 +429,35 @@
     flex-wrap: wrap;
   }
 
+  .project-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-top: 1.2rem;
+  }
+
+  .project-demo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #0a0a0b;
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.55rem 0.8rem;
+    transition: background 0.2s, transform 0.2s, border-color 0.2s;
+  }
+
+  .project-demo:hover {
+    background: var(--accent2);
+    border-color: var(--accent2);
+    transform: translateY(-1px);
+  }
+
   .stack-badge {
     font-family: var(--mono);
     font-size: 0.65rem;
@@ -818,6 +847,9 @@
           <span class="stack-badge">PyPDF</span>
           <span class="stack-badge">Streamlit</span>
           <span class="stack-badge">Python</span>
+        </div>
+        <div class="project-actions">
+          <a href="https://resume-analyzer-sfs.streamlit.app/" target="_blank" rel="noreferrer" class="project-demo">Live Demo <span>↗</span></a>
         </div>
       </div>
       <div class="project-arrow">-&gt;</div>
