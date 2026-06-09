@@ -41,11 +41,17 @@ st.markdown(
     <style>
       .stApp {
         background: #f8fafc;
+        color: #111827;
       }
 
       [data-testid="stSidebar"] {
         background: #ffffff;
         border-right: 1px solid #e5e7eb;
+      }
+
+      [data-testid="stSidebar"],
+      [data-testid="stSidebar"] *:not(button):not(svg):not(path) {
+        color: #111827 !important;
       }
 
       .block-container {
@@ -54,8 +60,10 @@ st.markdown(
         max-width: 1180px;
       }
 
-      h1, h2, h3 {
-        color: #111827;
+      h1, h2, h3, p, label,
+      [data-testid="stMarkdownContainer"],
+      [data-testid="stCaptionContainer"] {
+        color: #111827 !important;
       }
 
       .hero {
@@ -84,7 +92,7 @@ st.markdown(
       }
 
       .hero-copy {
-        color: #cbd5e1;
+        color: #cbd5e1 !important;
         max-width: 720px;
         font-size: 1.03rem;
         line-height: 1.7;
@@ -134,7 +142,7 @@ st.markdown(
       }
 
       .small-muted {
-        color: #64748b;
+        color: #64748b !important;
         font-size: 0.9rem;
         line-height: 1.6;
       }
@@ -145,6 +153,38 @@ st.markdown(
         border-radius: 14px;
         padding: 1rem;
         box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+      }
+
+      [data-testid="stMetricLabel"],
+      [data-testid="stMetricValue"],
+      [data-testid="stMetricDelta"] {
+        color: #111827 !important;
+      }
+
+      textarea,
+      input,
+      [data-baseweb="textarea"] textarea {
+        background: #ffffff !important;
+        color: #111827 !important;
+        border-color: #d1d5db !important;
+      }
+
+      [data-testid="stFileUploader"] section {
+        background: #ffffff !important;
+        border: 1px dashed #cbd5e1 !important;
+      }
+
+      [data-testid="stFileUploader"] section *,
+      [data-testid="stFileUploader"] small {
+        color: #111827 !important;
+      }
+
+      [data-testid="stTabs"] button {
+        color: #334155 !important;
+      }
+
+      [data-testid="stTabs"] button[aria-selected="true"] {
+        color: #0f766e !important;
       }
 
       .stButton > button {
