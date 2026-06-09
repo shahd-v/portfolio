@@ -124,7 +124,7 @@ with right:
     df = sample_dataframe()
     counts = df["sentiment"].value_counts().reset_index()
     counts.columns = ["sentiment", "count"]
-    fig = px.donut(
+    fig = px.pie(
         counts,
         names="sentiment",
         values="count",
@@ -163,4 +163,3 @@ st.plotly_chart(trend_fig, use_container_width=True)
 
 st.subheader("Sample analyzed posts")
 st.dataframe(df, use_container_width=True, hide_index=True)
-
