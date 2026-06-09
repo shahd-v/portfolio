@@ -661,6 +661,93 @@
     max-width: 720px;
   }
 
+  .sentiment-preview {
+    margin-top: 3rem;
+    border: 1px solid var(--line);
+    background: var(--bg2);
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .sentiment-title {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    line-height: 1.1;
+    margin-bottom: 0.8rem;
+  }
+
+  .sentiment-input {
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,0.02);
+    color: var(--text);
+    padding: 1rem;
+    min-height: 96px;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    direction: rtl;
+    margin: 1.2rem 0;
+  }
+
+  .sentiment-result {
+    display: flex;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+
+  .sentiment-cell {
+    flex: 1;
+    background: var(--bg3);
+    padding: 1rem;
+  }
+
+  .sentiment-label {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.35rem;
+  }
+
+  .sentiment-value {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .trend-panel {
+    border: 1px solid var(--line);
+    padding: 1.2rem;
+    min-height: 260px;
+  }
+
+  .trend-row {
+    display: grid;
+    grid-template-columns: 72px 1fr 40px;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
+
+  .trend-track {
+    height: 8px;
+    background: rgba(255,255,255,0.05);
+    overflow: hidden;
+  }
+
+  .trend-fill {
+    height: 100%;
+    background: var(--accent);
+  }
+
   /* Footer */
   footer {
     padding: 2rem 3rem;
@@ -711,6 +798,7 @@
     .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
     .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
     .demo-intro { grid-template-columns: 1fr; }
+    .sentiment-preview { grid-template-columns: 1fr; padding: 1.5rem; }
     .chatbot-shell { min-height: 520px; }
     .chatbot-frame { height: 520px; }
     .hero-bottom { flex-direction: column; align-items: flex-start; gap: 2rem; }
@@ -911,15 +999,16 @@
       <div class="project-num">02</div>
       <div class="project-body">
         <div class="project-title">Arabic Sentiment Analyzer</div>
-        <div class="project-desc">Fine-tuned AraBERT on a custom Arabic social media dataset to classify sentiment. Includes an interactive dashboard showing trends over time.</div>
+        <div class="project-desc">Streamlit app for Arabic social media sentiment analysis using a fine-tuned AraBERT workflow, HuggingFace model loading, and Plotly trend dashboards.</div>
         <div class="project-stack">
           <span class="stack-badge">AraBERT</span>
           <span class="stack-badge">HuggingFace</span>
           <span class="stack-badge">Plotly</span>
-          <span class="stack-badge">FastAPI</span>
+          <span class="stack-badge">Streamlit</span>
         </div>
         <div class="project-actions">
-          <a href="https://github.com/shahd-v/portfolio" target="_blank" rel="noreferrer" class="project-demo ghost">Private Case Study <span>↗</span></a>
+          <a href="#arabic-sentiment-demo" class="project-demo ghost">View Vercel Preview <span>↘</span></a>
+          <a href="https://github.com/shahd-v/portfolio/tree/main/arabic-sentiment-streamlit" target="_blank" rel="noreferrer" class="project-demo">Streamlit Source <span>↗</span></a>
         </div>
       </div>
       <div class="project-meta">
@@ -1022,6 +1111,50 @@
     <p class="chatbot-note">
       If the embed is blocked by the browser or Streamlit, open the chatbot in a new tab using the launch button above.
     </p>
+
+    <div class="sentiment-preview" id="arabic-sentiment-demo">
+      <div>
+        <div class="sentiment-title">Arabic Sentiment Analyzer</div>
+        <p style="font-size:0.9rem;color:var(--muted);line-height:1.8">
+          Streamlit project for classifying Arabic social media text with an AraBERT-based sentiment workflow and Plotly dashboard views.
+        </p>
+        <div class="sentiment-input">الخدمة ممتازة والتجربة كانت رائعة جدا</div>
+        <div class="sentiment-result">
+          <div class="sentiment-cell">
+            <div class="sentiment-label">Prediction</div>
+            <div class="sentiment-value">Positive</div>
+          </div>
+          <div class="sentiment-cell">
+            <div class="sentiment-label">Confidence</div>
+            <div class="sentiment-value">88%</div>
+          </div>
+        </div>
+        <div class="project-actions">
+          <a href="https://github.com/shahd-v/portfolio/tree/main/arabic-sentiment-streamlit" target="_blank" rel="noreferrer" class="project-demo">Open Streamlit Source <span>↗</span></a>
+        </div>
+      </div>
+      <div class="trend-panel">
+        <div class="sentiment-label">Trend dashboard preview</div>
+        <div class="trend-row">
+          <span>Positive</span>
+          <div class="trend-track"><div class="trend-fill" style="width:72%"></div></div>
+          <span>72%</span>
+        </div>
+        <div class="trend-row">
+          <span>Neutral</span>
+          <div class="trend-track"><div class="trend-fill" style="width:38%;background:var(--accent2)"></div></div>
+          <span>38%</span>
+        </div>
+        <div class="trend-row">
+          <span>Negative</span>
+          <div class="trend-track"><div class="trend-fill" style="width:24%;background:#f06060"></div></div>
+          <span>24%</span>
+        </div>
+        <p style="margin-top:1.4rem;font-size:0.85rem;color:var(--muted);line-height:1.7">
+          The full Streamlit app includes live text analysis, model configuration through `HF_MODEL_ID`, class distribution charts, and daily sentiment trend visualizations.
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 
