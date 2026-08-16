@@ -17,6 +17,8 @@ Source for my personal portfolio site, plus the Arabic Sentiment Analyzer app th
 
 A sentiment classifier for Arabic social media text, with a dashboard for batch analysis.
 
+**▶️ Live demo:** [portfolio-arabic-sentiment-analyzer-sfs.streamlit.app](https://portfolio-arabic-sentiment-analyzer-sfs.streamlit.app/)
+
 - **Single-text mode** - paste Arabic text and get a sentiment label with a confidence score
 - **Batch mode** - upload a CSV and classify every row at once; column names are detected automatically (`post`, `text`, `tweet` and similar all work)
 - **Dashboard** - sentiment distribution and trend-over-time charts built with Plotly
